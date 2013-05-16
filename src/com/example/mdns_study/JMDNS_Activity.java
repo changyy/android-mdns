@@ -59,16 +59,15 @@ public class JMDNS_Activity extends Activity {
 										System.out.println("serviceResolve:"+arg0.getName());
 										byte [] txt = arg0.getInfo().getTextBytes();
 										if (txt.length > 0) {
-											//byte keypair_delimiter = txt[0];  // use first character
 											int begin_at = 1;
-											for( int i=1 ; i < txt.length ; ++i ) {
-												if( txt[i] <= 32 || txt[i] >= 127 ) {	// or txt[i] == keypair_delimiter
-													System.out.println("TXT KeyPair:["+new String( txt, begin_at, i - begin_at + 1 )+"]");
+											for( int i=1 ; i < txt.length ; ++i ) {		// skip first unreadable character
+												if( txt[i] <= 32 || txt[i] >= 127 ) {	// or txt[i] == txt[0] // use first character to be delimiter
+													System.out.println("TXT KeyValuePair:["+new String( txt, begin_at, i - begin_at + 1 )+"]");
 													begin_at = i+1;
 												}
 											}
 											if( begin_at < txt.length )
-												System.out.println("TXT KeyPair:["+new String( txt, begin_at, txt.length - begin_at )+"]");
+												System.out.println("TXT KeyValuePair:["+new String( txt, begin_at, txt.length - begin_at )+"]");
 										}
 									}
 			        		   }

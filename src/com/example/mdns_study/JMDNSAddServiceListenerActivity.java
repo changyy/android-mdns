@@ -59,8 +59,8 @@ public class JMDNSAddServiceListenerActivity extends Activity {
 										System.out.println("serviceResolve:"+arg0.getName());
 										byte [] txt = arg0.getInfo().getTextBytes();
 										if (txt.length > 0) {
-											for( int i=0 ; i < txt.length ; ++i ) {		// skip first unreadable character
-												int len = ((int) txt[i] & 0xff);
+											for( int i=0 ; i < txt.length ; ++i ) {	
+												int len = ((int) txt[i] & 0xff);	// first byte is length of the "key=value"
 												int begin_at = i+1;
 												i += len; 
 												System.out.println("TXT KeyValuePair:["+new String( txt, begin_at, len )+"]");

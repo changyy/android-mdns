@@ -14,10 +14,10 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 
-public class JMDNS_Activity extends Activity {
+public class JMDNSAddServiceListenerActivity extends Activity {
 	private static final String TAG = "JMDNS";
 	private static JmDNS mJmDNS = null;
-	
+		
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class JMDNS_Activity extends Activity {
 			@Override
 			public void run() {
 			       try {
-			           WifiManager wifi = (WifiManager) JMDNS_Activity.this.getSystemService(Context.WIFI_SERVICE);
+			           WifiManager wifi = (WifiManager) JMDNSAddServiceListenerActivity.this.getSystemService(Context.WIFI_SERVICE);
 			           WifiInfo wifiinfo = wifi.getConnectionInfo();
 			           int intaddr = wifiinfo.getIpAddress();
 			           byte[] byteaddr = new byte[] { (byte) (intaddr & 0xff), (byte) (intaddr >> 8 & 0xff), (byte) (intaddr >> 16 & 0xff), (byte) (intaddr >> 24 & 0xff) };
@@ -59,15 +59,12 @@ public class JMDNS_Activity extends Activity {
 										System.out.println("serviceResolve:"+arg0.getName());
 										byte [] txt = arg0.getInfo().getTextBytes();
 										if (txt.length > 0) {
-											int begin_at = 1;
-											for( int i=1 ; i < txt.length ; ++i ) {		// skip first unreadable character
-												if( txt[i] <= 32 || txt[i] >= 127 ) {	// or txt[i] == txt[0] // use first character to be delimiter
-													System.out.println("TXT KeyValuePair:["+new String( txt, begin_at, i - begin_at + 1 )+"]");
-													begin_at = i+1;
-												}
+											for( int i=0 ; i < txt.length ; ++i ) {		// skip first unreadable character
+												int len = ((int) txt[i] & 0xff);
+												int begin_at = i+1;
+												i += len; 
+												System.out.println("TXT KeyValuePair:["+new String( txt, begin_at, len )+"]");
 											}
-											if( begin_at < txt.length )
-												System.out.println("TXT KeyValuePair:["+new String( txt, begin_at, txt.length - begin_at )+"]");
 										}
 									}
 			        		   }

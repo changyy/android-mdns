@@ -25,7 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="JMDNS_Activity"></activity>
-    </application>
+        <activity android:name=".JMDNSAddServiceListenerActivity"></activity>
+        <activity android:name=".JMDNSRegisterServiceActivity"></activity>
+        </application>
 
 </manifest>

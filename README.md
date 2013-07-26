@@ -23,8 +23,8 @@ Runing on Nexus S:
 05-15 22:51:00.071: I/System.out(3744): TXT:device1._changyytcp._tcp.local.
 05-15 22:51:00.078: I/System.out(3744): TXT:device2._changyytcp._tcp.local.
 05-15 22:51:00.102: I/System.out(3744): serviceResolve:device1
-05-15 22:51:00.102: I/System.out(3744): TXT KeyPair:[k1=v1]
-05-15 22:51:00.102: I/System.out(3744): TXT KeyPair:[k2=v2]
+05-15 22:51:00.102: I/System.out(3744): TXT KeyPair:[k1=v1]
+05-15 22:51:00.102: I/System.out(3744): TXT KeyPair:[k2=v2]
 05-15 22:51:00.106: I/System.out(3744): TXT KeyPair:[k3=v3]
 05-15 22:51:00.114: I/System.out(3744): serviceResolve:device2
 ~~~
